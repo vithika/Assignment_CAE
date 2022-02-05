@@ -99,12 +99,12 @@ export default {
   flightAttendant:{
     fontWeight: 'bold',
     color: 'black',
-    marginLeft: '23%',
+    marginLeft: '20%',
     marginBottom: 10,
   },
   captain_officer:{
     fontWeight: 'bold',
     color: 'black',
-    marginLeft: '23%',
+    marginLeft: '20%',
   },
 };

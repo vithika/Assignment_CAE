@@ -49,7 +49,7 @@ export default {
   },
   standbytime: {
     fontSize: 16,
-    color: 'red',
+    color: '#A52A2A',
   },
 
   Off: {

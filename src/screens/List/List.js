@@ -6,30 +6,26 @@ import {
   SectionList,
   RefreshControl,
   Text,
-  StatusBar,
   TouchableOpacity,
 } from 'react-native';
 import moment from 'moment';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import styles from './styles';
 
-const List = ({navigation}) => {
 
+const List = ({navigation}) => {
+  
   const [crewData, setcrewData] = useState([]);
   const [refreshing, setRefreshing] = useState(true);
 
- /*-------------------------- Calling Fetch data from  API on PageLoad  -----------------------------*/
- 
- 
- useEffect(() => {
-    fetchdatafromJSON();
+  /*-------------------------- Calling Fetch data from  API on PageLoad  -----------------------------*/
+
+  useEffect(() => {
+  fetchdatafromJSON();
   }, []);
 
-  
   /*-------------------------- Function to Fetch Data from JSON using Fetch --------------------------*/
-  
-  
-  
+
   const fetchdatafromJSON = () => {
     fetch('https://rosterbuster.aero/wp-content/uploads/dummy-response.json')
       .then(response => response.json())
@@ -38,12 +34,9 @@ const List = ({navigation}) => {
       .finally(() => setRefreshing(false));
   };
 
+  /*------------------------------Function to Create Filtered Data by Date and return Data ----------------------------------*/
 
-/*------------------------------Function to Create Filtered Data by Date and return Data ----------------------------------*/
- 
-
-
-const CrewData = Object.values(
+  const CrewData = Object.values(
     crewData.reduce((crew, item) => {
       if (!crew[item.Date])
         crew[item.Date] = {
@@ -55,13 +48,10 @@ const CrewData = Object.values(
     }, {}),
   );
 
-
-
-/*------------------------Function to Refresh List if Data changes------------------------*/
+  /*------------------------Function to Refresh List if Data changes------------------------*/
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
     fetchdatafromJSON();
-    
   }, []);
 
   /*---------------------Navigating and Passing Crew Data from List Page To Details Page ------------*/
@@ -89,6 +79,7 @@ const CrewData = Object.values(
   };
 
   /*----------------------Rendering Section List with List of Crew Data----------------*/
+
   const renderItem = ({item}) => (
     <TouchableOpacity onPress={() => _onPress(item)}>
       <View style={styles.itemStyle}>
@@ -96,6 +87,7 @@ const CrewData = Object.values(
           {item.DutyCode == 'FLIGHT' && (
             <Icon name="plane" style={styles.iconStyle} />
           )}
+
           {item.DutyCode == 'OFF' && (
             <Icon name="square" style={styles.iconStyle} />
           )}
@@ -103,7 +95,7 @@ const CrewData = Object.values(
             <Icon name="clipboard" style={styles.iconStyle} />
           )}
           {item.DutyCode == 'POSITIONING' && (
-            <Icon name="stop-circle-o" style={styles.iconStyle} />
+            <Icon name="plane" style={styles.iconStyle} />
           )}
           {item.DutyCode == 'LAYOVER' && (
             <Icon name="suitcase" style={styles.iconStyle} />
@@ -144,12 +136,18 @@ const CrewData = Object.values(
           )}
           {item.DutyCode == 'Standby' && (
             <Text style={styles.standbytime}>
+              {item.Time_Arrive.substring(0, 5)} -{' '}
+              {item.Time_Depart.substring(0, 5)}
+            </Text>
+          )}
+          {item.DutyCode != 'Standby' && item.DutyCode != 'LAYOVER' && (
+            <Text style={styles.time}>
               {item.Time_Depart} - {item.Time_Arrive}
             </Text>
           )}
-          {item.DutyCode != 'Standby' && (
+          {item.DutyCode == 'LAYOVER' && (
             <Text style={styles.time}>
-              {item.Time_Depart} - {item.Time_Arrive}
+              {diff_hours(item.Time_Depart, item.Time_Arrive)}
             </Text>
           )}
         </View>
@@ -172,33 +170,67 @@ const CrewData = Object.values(
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }>
-        {refreshing ? <Text style={{ textAlign: "center", fontSize: 20, color:'black' }}>Loading...</Text> :
-        <SectionList
-          sections={CrewData}
-          keyExtractor={item => item.id}
-          renderItem={renderItem}
-          renderSectionHeader={renderHeader}
-        />
-      }
+        {refreshing ? (
+          <Text style={{textAlign: 'center', fontSize: 20, color: 'black'}}>
+            Loading...
+          </Text>
+        ) : (
+          <SectionList
+            sections={CrewData}
+            keyExtractor={item => item.id}
+            renderItem={renderItem}
+            renderSectionHeader={renderHeader}
+          />
+        )}
       </ScrollView>
     </SafeAreaView>
   );
 };
+
+/*---function to  calculate difference in hours for Layover---------------- */
+function diff_hours(dt2, dt1) {
+  var splitted1 = dt2.split(':');
+  var splitted2 = dt1.split(':');
+  var time1 = parseInt(splitted1[0] * 60) + parseInt(splitted1[1]);
+  var time2 = parseInt(splitted2[0] * 60) + parseInt(splitted2[1]);
+  var hours;
+  var minutes;
+
+  if (time1 < time2) {
+    var diff = time2 - time1;
+    hours = Math.floor(diff / 60);
+    minutes = diff % 60;
+  } else {
+    var diff1 = parseInt('1440') - parseInt(time1);
+    var diff2 = parseInt(time2);
+    var totalDiff = diff1 + diff2;
+    hours = Math.floor(totalDiff / 60);
+    minutes = totalDiff % 60;
+  }
+  return hours.toString() + ':' + minutes.toString() + ' hours';
+}
 /*--------------------------Rendering Header with  Formatted Date-----------------------*/
+
+
 renderHeader = ({section}) => {
   var title_date = section.title.replace(
     section.title.substring(3, 5),
     section.title.substring(0, 2),
   );
-  var date_title = title_date.replace(title_date.substring(0, 2), section.title.substring(3, 5));
 
-
+  var dutchDayNames = ['zo', 'ma', 'di', 'wo', 'do', 'vri', 'za'];  //created  an array with weekdays in dutch.
+  var date_title = title_date.replace(
+    title_date.substring(0, 2),
+    section.title.substring(3, 5),
+  );
+  var date = moment(date_title)
+    .format('DD MMM. YYYY')
+    .toLocaleLowerCase();
+  var weekday_dutch = dutchDayNames[new Date(date).getDay()];//get day in Dutch for the given date
   return (
     <View style={styles.headerStyle}>
       <Text style={styles.itemDate}>
-        {moment(date_title)
-          .format('DD MMM. YYYY')
-          .toLocaleLowerCase()}        
+        {weekday_dutch} {date}
       </Text>
     </View>
   );
