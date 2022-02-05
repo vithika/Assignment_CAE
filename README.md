@@ -60,7 +60,7 @@ The app  is build using React Native Framework ,developed and tested on both Pla
 
 
 Thanks,
-Vithika
+<p>Vithika</p>
 
 For feedback contact me on vgvithikagupta1@gmail.com 
 
