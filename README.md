@@ -17,10 +17,23 @@ The data for this Assignment is taken from :https://rosterbuster.aero/wp-content
 
 The app  is build using React Native Framework ,developed and tested on both Platforms Android and iOS.
 
+
+
+
+<h4>Screenshots for iOS on iPhone </h4>
+
+![iphone_Loading](https://user-images.githubusercontent.com/20993583/152652961-5c4b1cf4-2324-4a0d-85a7-df1c9471fe38.PNG)
+![iphonelist](https://user-images.githubusercontent.com/20993583/152652982-c69da99d-f983-4117-aaf3-6db399482c01.png)
+![list_iphone](https://user-images.githubusercontent.com/20993583/152652977-1fa2edea-1aea-404f-8469-386df3f4df78.PNG)
+![details_iphone](https://user-images.githubusercontent.com/20993583/152652984-64796f8b-4c6f-4024-a817-c317dfa240bd.PNG)
+
 <h4>Screenshots for Android</h4>
 
 
-<h4>Screenshots for iOS </h4>
+
+
+
+
 
 
 
