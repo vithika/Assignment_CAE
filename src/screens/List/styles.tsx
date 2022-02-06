@@ -29,31 +29,32 @@ export default {
     fontWeight: 'bold',
   },
   LayOver: {
-    fontSize: 22,
+    fontSize: 20,
     marginLeft: 15,
     color: 'black',
     fontWeight: 'bold',
     textTransform: 'capitalize',
   },
   destination_LayOver: {
-    fontSize: 18,
+    fontSize: 17,
     marginLeft: 15,
     color: 'gray',
     fontWeight: 'normal',
   },
   time: {
-    fontSize: 16,
+    fontSize: 15,
     marginRight: 30,
     marginTop: 50,
     color: '#A52A2A',
   },
   standbytime: {
-    fontSize: 16,
+    fontSize: 15,
+    marginRight: 30,
     color: '#A52A2A',
   },
 
   Off: {
-    fontSize: 22,
+    fontSize: 20,
     marginLeft: 15,
     color: 'black',
     fontWeight: 'bold',
@@ -72,4 +73,13 @@ export default {
     fontWeight: 'bold',
     color: 'black',
   },
+header:{  
+  flex:1,
+  fontSize: 25,
+  textAlign:'center',
+  fontWeight:'bold',
+  color:"black",
+  
+}
+ 
 };

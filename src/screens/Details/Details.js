@@ -3,11 +3,8 @@ import {ScrollView, View, Text, SafeAreaView, BackHandler} from 'react-native';
 import styles from './styles';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-
 const Details = ({route}) => {
-
-
- /*--------Rendering the details of the selected Crew from the List using params from List Page---------*/
+  /*--------Rendering the details of the selected Crew from the List using params from List Page---------*/
 
   return (
     <SafeAreaView>
@@ -32,10 +29,7 @@ const Details = ({route}) => {
               </View>
               <View style={{flexDirection: 'row'}}>
                 {route.params.FlightName != '' && (
-                  <Text
-                    style={styles.flightName}>
-                    Flight Name :
-                  </Text>
+                  <Text style={styles.flightName}>Flight Name :</Text>
                 )}
                 {route.params.FlightName != '' && (
                   <Text style={styles.Flightname}>
@@ -46,10 +40,7 @@ const Details = ({route}) => {
               </View>
               <View style={{flexDirection: 'row'}}>
                 {route.params.Tail != '' && (
-                  <Text
-                    style={styles.tail}>
-                    Tail:
-                  </Text>
+                  <Text style={styles.tail}>Tail:</Text>
                 )}
                 {route.params.Tail != '' && (
                   <Text style={styles.Flightname}> {route.params.Tail}</Text>
@@ -57,11 +48,7 @@ const Details = ({route}) => {
               </View>
               <View style={{flexDirection: 'row'}}>
                 {route.params.AircraftType != '' && (
-                  <Text
-                    style={styles.aircraftType }>
-                    {' '}
-                    AircraftType:
-                  </Text>
+                  <Text style={styles.aircraftType}> AircraftType:</Text>
                 )}
                 {route.params.DutyCode == 'FLIGHT' &&
                   route.params.AircraftType != '' && (
@@ -72,11 +59,7 @@ const Details = ({route}) => {
                   )}
               </View>
               <View style={{flexDirection: 'row'}}>
-                <Text
-                  style={styles.flightdate}>
-                  {' '}
-                Flight Date:
-                </Text>
+                <Text style={styles.flightdate}> Flight Date:</Text>
 
                 <Text style={styles.Date}>{route.params.Date}</Text>
               </View>
@@ -103,6 +86,11 @@ const Details = ({route}) => {
               )}
             </View>
             <View>
+              {route.params.DutyCode == 'FLIGHT' && (
+                <Text> No of Stops: 1</Text>
+              )}
+            </View>
+            <View>
               <View style={{flexDirection: 'row'}}>
                 {route.params.DutyCode == 'FLIGHT' &&
                   route.params.Captain != '' && (
@@ -113,11 +101,7 @@ const Details = ({route}) => {
                 <View style={{flexDirection: 'row'}}>
                   <View style={{flexDirection: 'row'}}>
                     {route.params.Captain != '' && (
-                      <Text
-                        style={styles.captain_officer}>
-                        {' '}
-                        Captain{' '}
-                      </Text>
+                      <Text style={styles.captain_officer}> Captain </Text>
                     )}
                     {route.params.Captain != '' && (
                       <Text style={styles.moreinfo}>
@@ -128,11 +112,7 @@ const Details = ({route}) => {
                 </View>
                 <View style={{flexDirection: 'row'}}>
                   {route.params.FirstOfficer != '' && (
-                    <Text
-                      style={styles.captain_officer}>
-                      {' '}
-                      First Officer
-                    </Text>
+                    <Text style={styles.captain_officer}> First Officer</Text>
                   )}
                   {route.params.FirstOfficer != '' && (
                     <Text style={styles.moreinfo}>
@@ -144,11 +124,7 @@ const Details = ({route}) => {
               </View>
               <View style={{flexDirection: 'row'}}>
                 {route.params.FlightAttendant != '' && (
-                  <Text
-                    style={styles.flightAttendant}>
-                    {' '}
-                    Flight Attendant{' '}
-                  </Text>
+                  <Text style={styles.flightAttendant}> Flight Attendant </Text>
                 )}
                 {route.params.FlightAttendant != '' && (
                   <Text style={styles.moreinfo}>

@@ -11,26 +11,50 @@ import {
 import moment from 'moment';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import styles from './styles';
-
+import {AsyncStorage} from '@react-native-async-storage/async-storage';
 
 const List = ({navigation}) => {
-  
+
   const [crewData, setcrewData] = useState([]);
   const [refreshing, setRefreshing] = useState(true);
+  const [today_date, settoday_date] = useState('');
+
+
+
 
   /*-------------------------- Calling Fetch data from  API on PageLoad  -----------------------------*/
 
   useEffect(() => {
-  fetchdatafromJSON();
+    gettodaydate();
+    fetchdatafromJSON();
   }, []);
+
+  /*--Function to get Today's Date,we can use the value today in TodayCrewData to get actual Today's Data -------*/
+
+  const gettodaydate = () => {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1;
+    var yyyy = today.getFullYear();
+    today = dd + '/' + mm + '/' + yyyy;
+    settoday_date(today);
+  };
 
   /*-------------------------- Function to Fetch Data from JSON using Fetch --------------------------*/
 
   const fetchdatafromJSON = () => {
     fetch('https://rosterbuster.aero/wp-content/uploads/dummy-response.json')
       .then(response => response.json())
-      .then(json => setcrewData(json))
-      .catch(error => console.error(error))
+      .then(json => {
+        setcrewData(json);
+        AsyncStorage.setItem('crewData', JSON.stringify(json));
+      })
+      .catch(error => {
+        let crewDataLocalStorage = AsyncStorage.getItem('crewData');
+        setcrewData(JSON.parse(crewDataLocalStorage));
+        console.log(crewData);
+        alert(error);
+      })
       .finally(() => setRefreshing(false));
   };
 
@@ -44,11 +68,39 @@ const List = ({navigation}) => {
           data: [],
         };
       crew[item.Date].data.push(item);
+
       return crew;
     }, {}),
   );
 
+  /*------Creating Today's Data---------*/
+
+  /*----- For  the assignment purpose ,I have assumed today's Date to be 29/07/2020 ,
+  on opening the app user will instantly see the today's
+  dutis at the top without scrolling down to the bottom of the list.
+  If the data is changed and we have data for today's actual Date,
+  We just need to make the value "29/07/2020 to  today_date which is already 
+  calcualed on the page load." -------*/
+
+
+
+  const TodayCrewData = Object.values(
+    crewData.reduce((todaycrew, item) => {
+      if (item.Date == '29/07/2020') {   
+        if (!todaycrew[item.Date])
+          todaycrew[item.Date] = {
+            title: item.Date,
+            data: [],
+          };
+
+        todaycrew[item.Date].data.push(item);
+      }
+      return todaycrew;
+    }, {}),
+  );
+
   /*------------------------Function to Refresh List if Data changes------------------------*/
+
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
     fetchdatafromJSON();
@@ -132,7 +184,10 @@ const List = ({navigation}) => {
         </View>
         <View style={{flexDirection: 'column'}}>
           {item.DutyCode == 'Standby' && (
-            <Text style={{color: 'grey', marginTop: 10}}> Match Crew</Text>
+            <Text style={{color: 'grey', marginTop: 18, marginRight: 30}}>
+              {' '}
+              Match Crew
+            </Text>
           )}
           {item.DutyCode == 'Standby' && (
             <Text style={styles.standbytime}>
@@ -170,6 +225,18 @@ const List = ({navigation}) => {
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }>
+        { TodayCrewData !=" " &&(
+        <Text style={styles.header}>Today's Duties </Text>
+        )}
+        <SectionList
+          sections={TodayCrewData}
+          keyExtractor={item => item.id}
+          renderItem={renderItem}
+          renderSectionHeader={renderHeader}
+        />
+         { CrewData !=" " &&(
+        <Text style={styles.header}>View All Duties </Text>
+        )}
         {refreshing ? (
           <Text style={{textAlign: 'center', fontSize: 20, color: 'black'}}>
             Loading...
@@ -188,9 +255,9 @@ const List = ({navigation}) => {
 };
 
 /*---function to  calculate difference in hours for Layover---------------- */
-function diff_hours(dt2, dt1) {
-  var splitted1 = dt2.split(':');
-  var splitted2 = dt1.split(':');
+function diff_hours(t2, t1) {
+  var splitted1 = t2.split(':');
+  var splitted2 = t1.split(':');
   var time1 = parseInt(splitted1[0] * 60) + parseInt(splitted1[1]);
   var time2 = parseInt(splitted2[0] * 60) + parseInt(splitted2[1]);
   var hours;
@@ -211,14 +278,13 @@ function diff_hours(dt2, dt1) {
 }
 /*--------------------------Rendering Header with  Formatted Date-----------------------*/
 
-
 renderHeader = ({section}) => {
   var title_date = section.title.replace(
     section.title.substring(3, 5),
     section.title.substring(0, 2),
   );
 
-  var dutchDayNames = ['zo', 'ma', 'di', 'wo', 'do', 'vri', 'za'];  //created  an array with weekdays in dutch.
+  var dutchDayNames = ['zo', 'ma', 'di', 'wo', 'do', 'vri', 'za']; //created  an array with weekdays in dutch.
   var date_title = title_date.replace(
     title_date.substring(0, 2),
     section.title.substring(3, 5),
@@ -226,7 +292,7 @@ renderHeader = ({section}) => {
   var date = moment(date_title)
     .format('DD MMM. YYYY')
     .toLocaleLowerCase();
-  var weekday_dutch = dutchDayNames[new Date(date).getDay()];//get day in Dutch for the given date
+  var weekday_dutch = dutchDayNames[new Date(date).getDay()]; //get day in Dutch for the given date
   return (
     <View style={styles.headerStyle}>
       <Text style={styles.itemDate}>
