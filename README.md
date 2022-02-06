@@ -30,8 +30,8 @@ The app  is build using React Native Framework ,developed and tested on both Pla
 <p>● Data is available offline. -Once the data is loaded if user goes offline they still can view the list of data  with details on the app </p>
 
 
-<p> <b> Path for Executable file (APK) for Android:  Assignment_CAE/CrewAppfinal.apk </b></p>
-<p> <b> Path for Executable file (AAB) for Android: </h4> Assignment_CAE/CrewAppFinal.aab </b> </p>
+<p> <b> Path for Executable file (APK) for Android:  Assignment_CAE/release/CrewAppfinal.apk </b></p>
+<p> <b> Path for Executable file (AAB) for Android: </h4> Assignment_CAE/release/CrewAppFinal.aab </b> </p>
 
 <h3> <b>Screenshots for iOS on iPhone </b> </h3>
 
