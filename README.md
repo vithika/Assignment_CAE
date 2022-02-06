@@ -27,10 +27,11 @@ The app  is build using React Native Framework ,developed and tested on both Pla
 <p>● Browse the events in the event list. </p>
 <p>● Tap an item and see all details </p>
 <p>● Pull to refresh to reload the data </p>
-<p>● Data is available offline. </p>
+<p>● Data is available offline.</p>
 
 
-<h4>Path for  Executable file for Android: </h4>  <h3>
+<p> <b> Path for Executable file (APK) for Android:  Assignment_CAE/release/CrewApp.apk </b></p>
+<p> <b> Path for Executable file (AAB) for Android: </h4> Assignment_CAE/CrewApp.aab </b> </p>
 
 <h3> <b>Screenshots for iOS on iPhone </b> </h3>
 
@@ -48,17 +49,18 @@ The app  is build using React Native Framework ,developed and tested on both Pla
 ![det_and](https://user-images.githubusercontent.com/20993583/152653479-82e3f5e2-27da-44ea-baf4-b48e07ff51f1.jpg)
 
 <h4> Code structure WalkThrough </h4>
-
-<p> List.js inside src/screens/List  contains code for List Page </p>
-<p> styles.ts inside src/screens/List contains code for styles related to List Page and used in List.js Page </p>
+	<p> App.js contains routers and Screen Names. </p>
+	
+<p> List.js inside src/screens/List  contains code for List Page.</p>
+    <p> styles.ts inside src/screens/List contains code for styles related to List Page and used in List.js Page </p>
   
- <p> Details.js inside src/screens/Deatils contains code for Details Page </p>
- <p> Details.ts inside src/screens/Details contains code for styles related to Details Page and used inside .Details.js Page </p>
+<p> Details.js inside src/screens/Details contains code for Details Page.</p>
+     </p>Details.ts inside src/screens/Details contains code for styles related to Details Page and used inside .Details.js Page </p>
  
 
 
 Thanks,
-Vithika
+<p>Vithika</p>
 
 For feedback contact me on vgvithikagupta1@gmail.com 
 
