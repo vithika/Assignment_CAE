@@ -32,6 +32,8 @@ The app  is build using React Native Framework ,developed and tested on both Pla
 
 <p> <b> Path for Executable file (APK) for Android:  Assignment_CAE/release/CrewAppfinal.apk </b></p>
 <p> <b> Path for Executable file (AAB) for Android: </h4> Assignment_CAE/release/CrewAppFinal.aab </b> </p>
+Apk file directly available: https://drive.google.com/file/d/1bdzIbEDZGuSTbMXggFeLsfKh6ld7wA88/view?usp=sharing
+
 
 <h3> <b>Screenshots for iOS on iPhone </b> </h3>
 
