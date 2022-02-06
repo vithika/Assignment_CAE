@@ -23,30 +23,36 @@ The app  is build using React Native Framework ,developed and tested on both Pla
 
 <h3><b>Features:</b></h3>
 
-<p>● Instantly see the dutie(s) on app open.</p>
-<p>● Browse the events in the event list. </p>
-<p>● Tap an item and see all details </p>
-<p>● Pull to refresh to reload the data </p>
-<p>● Data is available offline.</p>
+<p>● Instantly see the dutie(s) on app open. - For the Assignment I have assumed today's date to be 29/07/2021,When user once open the App he instantly see today's Duties without Scrolling throughout the app. </p> 
+<p>● Browse the events in the event list. - User finds all the List filtered according to Data Sections. </p>
+<p>● Tap an item and see all details  -User view all the details like FlightName,Destination ,Arrival Times and the places as well as Captain,FirstFlightOfficer names etc.</p>
+<p>● Pull to refresh to reload the data  -The user can pull down the list to Refresh and reload the Data. </p>
+<p>● Data is available offline. -Once the data is loaded if user goes offline they still can view the list of data  with details on the app </p>
 
 
-<p> <b> Path for Executable file (APK) for Android:  Assignment_CAE/release/CrewApp.apk </b></p>
-<p> <b> Path for Executable file (AAB) for Android: </h4> Assignment_CAE/CrewApp.aab </b> </p>
+<p> <b> Path for Executable file (APK) for Android:  Assignment_CAE/CrewAppfinal.apk </b></p>
+<p> <b> Path for Executable file (AAB) for Android: </h4> Assignment_CAE/CrewAppFinal.aab </b> </p>
 
 <h3> <b>Screenshots for iOS on iPhone </b> </h3>
 
-![iphone_Loading](https://user-images.githubusercontent.com/20993583/152652961-5c4b1cf4-2324-4a0d-85a7-df1c9471fe38.PNG)
-![iphonelist](https://user-images.githubusercontent.com/20993583/152652982-c69da99d-f983-4117-aaf3-6db399482c01.png)
-![list_iphone](https://user-images.githubusercontent.com/20993583/152652977-1fa2edea-1aea-404f-8469-386df3f4df78.PNG)
-![details_iphone](https://user-images.githubusercontent.com/20993583/152652984-64796f8b-4c6f-4024-a817-c317dfa240bd.PNG)
+![Iphone_1](https://user-images.githubusercontent.com/20993583/152672439-5af86a79-ce21-4aa8-a12f-97600b976541.PNG)
+![iphone2](https://user-images.githubusercontent.com/20993583/152672444-6d32be92-4751-4c48-9f07-c74eeee43c13.PNG)
+![phone3](https://user-images.githubusercontent.com/20993583/152672450-1be0df94-e918-48aa-a2b8-c788cee3d742.PNG)
+![iphone4](https://user-images.githubusercontent.com/20993583/152672452-2403e0b9-0551-4bcd-b16a-7eb9afab63ce.PNG)
+![iphone5](https://user-images.githubusercontent.com/20993583/152672455-640294ec-8ee0-4eb6-89bb-22643cf91bee.jpeg)
+
 
 
 <h3> <b>Screenshots for Android </b></h3>
 
 ![load](https://user-images.githubusercontent.com/20993583/152653455-1f432fba-a038-4af4-8477-9110e9130d59.jpg)
-![list](https://user-images.githubusercontent.com/20993583/152653468-61e22ac8-ad92-4b9a-ac4f-ffb5504847f6.jpg)
-![list1](https://user-images.githubusercontent.com/20993583/152653474-9ae40a02-16dd-421b-a3cf-8503c0887ce4.jpg)
-![det_and](https://user-images.githubusercontent.com/20993583/152653479-82e3f5e2-27da-44ea-baf4-b48e07ff51f1.jpg)
+![android2](https://user-images.githubusercontent.com/20993583/152672561-05bf25f8-5ea2-43a6-a68c-5fd52bd1d564.jpg)
+![android3](https://user-images.githubusercontent.com/20993583/152672565-2b569734-90a9-48d2-80b5-cb1a3d54c471.jpg)
+![andriod4](https://user-images.githubusercontent.com/20993583/152672569-77e1bd4d-0d72-40ba-87ce-660f5800703b.jpg)
+![android5](https://user-images.githubusercontent.com/20993583/152672572-613d0da0-aea0-416c-832b-d2ca0128371f.jpg)
+![android6](https://user-images.githubusercontent.com/20993583/152672601-f424afb0-7a53-47e0-85d1-3b12ce818747.jpg)
+
+
 
 <h4> Code structure WalkThrough </h4>
 	<p> App.js contains routers and Screen Names. </p>
@@ -57,6 +63,12 @@ The app  is build using React Native Framework ,developed and tested on both Pla
 <p> Details.js inside src/screens/Details contains code for Details Page.</p>
      </p>Details.ts inside src/screens/Details contains code for styles related to Details Page and used inside .Details.js Page </p>
  
+
+<h3> More Info to be Added </h3>
+<p> We can also add details like No of Stops,no of Passengers in the JSON and show them in the Details Page.
+	I have added data - No of Stops for reference.
+	</p>
+
 
 
 Thanks,
